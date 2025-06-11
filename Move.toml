@@ -1,0 +1,15 @@
+[package]
+name = "goblin"
+version = "1.0.0"
+authors = []
+
+[addresses]
+Goblin = "_"
+
+[dev-addresses]
+Goblin = "0x6766b9072bc72ba669881d3d09a0565175432351ed71513fb8ecebb1e1a014ec"
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-framework.git", subdir = "aptos-framework", rev = "mainnet" }
+
+[dev-dependencies]
