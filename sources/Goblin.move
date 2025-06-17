@@ -26,6 +26,7 @@ module Goblin::Goblin {
     const EPOOL_NOT_FOUND: u64 = 1000005;
     const EDIVIDOR_ZERO: u64 = 1000006;
     const ESAME_REWARD_RECEIPT: u64 = 1000007;
+    const EPARAM_AMOUNT_ZERO: u64 = 1000008;
 
     struct GoblinExternal has key, store {
         mint_ref: MintRef,
@@ -117,6 +118,7 @@ module Goblin::Goblin {
     }
 
     public entry fun stake(signer: &signer, amount: u64) acquires GoblinConfig, GoblinExternal {
+        assert!(amount > 0, EPARAM_AMOUNT_ZERO);
         let signer_addr = address_of(signer);
         let address = get_storage_address();
         let config = borrow_global_mut<GoblinConfig>(address);
@@ -136,6 +138,7 @@ module Goblin::Goblin {
     }
 
     public entry fun unlock(signer: &signer, goblin_amount: u64) acquires GoblinConfig, GoblinExternal, Storage {
+        assert!(goblin_amount > 0, EPARAM_AMOUNT_ZERO);
         let signer_addr = address_of(signer);
         let address = get_storage_address();
         let config = borrow_global_mut<GoblinConfig>(address);
